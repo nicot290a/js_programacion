@@ -1,0 +1,24 @@
+.div_principal
+{
+background-color: rgba(71, 22, 247, 0.822);
+height: 120px;
+width: 40%;
+margin: 20px auto;
+border-radius: 40px 0px 40px 0px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+justify-content: center;
+}
+        
+.titulo_principal
+{
+line-height: 120px;
+color: white;
+margin: 0px;
+}
+
+.formulario_principal
+{
+    text-align: center;
+}
