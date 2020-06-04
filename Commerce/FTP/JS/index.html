@@ -1,0 +1,48 @@
+<! Login en JS combinado con CSS y HTML realizados por Nicolas Flores y Lucas Vaccare.>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Login para E-COMMERCE</title>
+	</head>
+
+	<body style = "margin: 0px">
+	<SCRIPT  language=JavaScript> 
+		function go(){
+
+			if (document.form.password.value=='clave123' && document.form.login.value=='usuario'){ 
+				        document.write('Login exitoso!<br><br> En la Fecha :');
+						 document.write(Date());
+						 document.write('<br><INPUT type=button value="Back" onclick=location.reload()>');
+				    } 
+			    else{ 
+				             alert("Porfavor ingrese, nombre de usuario y clave correctos."); 
+				        } 
+		} 
+function register(){
+	document.write('<div style = "background-color: rgba(71, 22, 247, 0.822); height: 120px; width: 40%; margin: 20px auto; border-radius: 40px 0px 40px 0px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;"><h1 style= "line-height: 120px; color: white; margin: 0px;">REGISTRO NUEVO USUARIO</h1></style><br/><br/></div>');
+	document.write('<h4 align="center">Ingrese los datos solicitados par dar de alta el nuevo usuario</h4><br>');
+	document.write('<P align="center">Usuario:<br><INPUT type=text name=login><br><P align="center">Clave:<br><INPUT type=password name=password><br><P align="center">Reingrese la Clave:<br><INPUT type=password name=passwordv><br><P align="center">MAIL:<br><INPUT type=text name=mail><br>');
+	document.write('<br><INPUT onclick=alert("Alta exitosa!") type=button value=OK> &nbsp;'); 
+	
+	document.write('<INPUT type=button value="Back" onclick=location.reload()>');
+}
+    </SCRIPT> 
+    
+    <div style = "background-color: rgba(71, 22, 247, 0.822); height: 120px; width: 40%; margin: 20px auto; border-radius: 40px 0px 40px 0px;
+    display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+        
+        <h1 style= "line-height: 120px; color: white; margin: 0px;">LOGIN E-COMMERCE</h1></style><br/><br/>
+        
+    </div>
+    
+	<FORM name=form action="index.HTML">
+		<div><align="center">
+            <P align="center">Usuario:<br><INPUT type=text name=login> 
+            <P align="center">Clave:<br> <INPUT type=password name=password> <br><br>
+            <INPUT onclick=go() type=button value=Acceder>&nbsp; 
+            <INPUT type=button value="Registrarse" onclick=register()> 
+        </align></div>
+    </FORM>
+	</body>
+</html>
+

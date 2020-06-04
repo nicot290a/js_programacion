@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+<!--    <link rel="stylesheet" href="css/style.css" /> -->
+    <title>Productos</title>
+  </head>
+
+  <body>
+    <h1 align="center">Bienvenidos a Paradigmas</h1>
+<div>	
+<table>
+<tr>
+	<th><div id="productos" align="left">	
+		<select name="categorias" id="categorias">
+			<option selected disabled>Seleccione una categoria</option>
+		  <option value="tablets">Tablets</option>
+		  <option value="celulares">Celulares</option>
+		  <option value="relojes">Relojes</option>
+		</select>
+		<br/>
+		<div id="lista-productos"></div>
+	</div>		</th>
+			
+			
+	<th><div id="carrito" align="right">	
+	Carrito de compras
+		<div id="lista-carrito"></div>
+	</div></th>
+</tr>	
+</table>		
+</div>
+<h1 align="center"> <a href="index1.html"><button> Cerrar Sesión </button></a> </h1>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+$("#categorias").on("change", traerProductos);
+var productosdb = [];
+var productoscarrito = [];
+
+
+
+function traerProductos() {
+$("#lista-productos").html("");
+
+var e = document.getElementById("categorias");
+var categoriabuscada = e.options[e.selectedIndex].value;
+
+
+  $.ajax({
+    url: 'productos.php?categoria='+categoriabuscada,
+    success: function(respuesta) {
+      var listProductos = $("#lista-productos");
+      $.each(respuesta.productos, function(index, elemento) {
+	  productosdb[elemento.id] = [];
+	  productosdb[elemento.id]["id"] = elemento.id;
+	  productosdb[elemento.id]["nombre"] = elemento.nombre;
+	  productosdb[elemento.id]["precio"] = elemento.precio;
+	// [elemento.nombre,elemento.precio];
+        listProductos.append(
+            '<div class="tablath"><td>'
+          +     '<h2>' + elemento.nombre + '</h2> $' + elemento.precio
+		  + '<tr> <button class="btn-cart" onClick="AgregaraCarrito('+elemento.id+')">Comprar</button></tr>'
+          + '</td></div>'
+        );    
+      });
+    },
+    error: function() {
+      console.log("No se ha podido obtener la información");
+    }
+  });
+}
+
+
+function AgregaraCarrito(id) {
+if(productoscarrito[id])
+{
+	productoscarrito[id]["cantidad"]++; //suma 1 a la cantidad
+	productoscarrito[id]["nombre"] = productosdb[id]["nombre"]; 
+	productoscarrito[id]["precio"] = productosdb[id]["precio"]; 
+}
+else
+{
+	productoscarrito[id] = [];
+	productoscarrito[id]["cantidad"] = 1; //suma 1 a la cantidad
+	productoscarrito[id]["id"] = productosdb[id]["id"]; //id
+	productoscarrito[id]["nombre"] = productosdb[id]["nombre"]; //nombre
+	productoscarrito[id]["precio"] = productosdb[id]["precio"]; 
+	/*productoscarrito[id][0] = 1; //define cantidad
+	productoscarrito[id][1] = productosdb[id][1]; //id
+	productoscarrito[id][1] = productosdb[id][1]; //nombre	*/
+}
+ActualizaCarrito();
+}
+
+function EliminardeCarrito(id) {
+	productoscarrito[id]["cantidad"]--; //suma 1 a la cantidad
+	ActualizaCarrito();
+}
+
+function ActualizaCarrito()
+{
+$("#lista-carrito").html("");
+var listaCarrito = $("#lista-carrito");
+var PrecioTotalCarrito = 0;
+      $.each(productoscarrito, function(index, elemento) {
+	  if(elemento)
+	  {
+		if(elemento["cantidad"] > 0)
+		{
+			var precioproducto = elemento["cantidad"] * elemento["precio"];
+			PrecioTotalCarrito = PrecioTotalCarrito + precioproducto;
+			listaCarrito.append('<div class="registrocarrito">'+elemento["cantidad"]+' - '+elemento["nombre"]+' $'+precioproducto
+			+ '<button class="btn-cart" onClick="EliminardeCarrito('+elemento["id"]+')">Eliminar</button></tr></div>'
+			
+			);
+		}
+	  }	
+	  
+
+      });
+	  listaCarrito.append('<br/><div class="preciototal">TOTAL: $'+PrecioTotalCarrito+'</div>');
+}
+
+</script>
+  </body>
+</html>
