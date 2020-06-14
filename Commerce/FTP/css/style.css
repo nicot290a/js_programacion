@@ -79,8 +79,26 @@ h2 {font-size: 16px}
     background-color: rgb(114, 116, 122); 
     color: #fff; 
     text-align: center; 
-    margin: 50px auto;
+    margin: 80px auto;
 } 
+
+.contenedor-tabla{
+
+  display: table;
+  margin:10px; padding:10px; 
+  }
+  
+  .contenedor-fila{
+  
+  display: table-row;
+  margin:10px; padding:10px; 
+  }
+  
+  .contenedor-columna{
+  
+  display: table-cell;
+  margin:10px; padding:10px; 
+  }
 /*
 
 #main { 

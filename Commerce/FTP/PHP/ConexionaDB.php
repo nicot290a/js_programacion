@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 abstract class DBAbstractModel {
  private static $db_host = 'localhost';
  private static $db_user = 'c1590108_db';
@@ -10,7 +13,7 @@ abstract class DBAbstractModel {
  private $conn;
  public $mensaje = 'Hecho';
  # métodos abstractos para ABM de clases que hereden
- abstract protected function ComprobarLogin($usuario,$contraseña);
+ //abstract protected function ComprobarLogin($usuario,$contraseña);
 
  # los siguientes métodos pueden definirse con exactitud y
  # no son abstractos

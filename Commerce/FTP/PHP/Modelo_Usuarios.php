@@ -6,7 +6,7 @@ class Usuario extends DBAbstractModel {
 public $id;
 
 	public function ComprobarLogin($usuario,$contrasena) {
-		 if($usuario != '' && $contraseña != '') 
+		 if($usuario != '' && $contrasena != '') 
 		 {
 		 $this->query = "SELECT id
 		 FROM usuarios

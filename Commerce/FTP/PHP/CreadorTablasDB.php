@@ -11,13 +11,98 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
+/*
 $SQL = "ALTER TABLE `usuarios` CHANGE `contraseña` `password` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;";
 if ($conn->query($SQL) === TRUE) {
   echo "Se cambio correctametne";
 } else {
   echo "Error creating table: " . $conn->error;
+}*/
+
+/*
+$sql="CREATE TABLE `categorias` (
+	`IdCategoria` INT(11) NOT NULL AUTO_INCREMENT,
+	`Descripcion` CHAR(150) NOT NULL DEFAULT '' COLLATE 'utf8mb4_general_ci',
+	PRIMARY KEY (`IdCategoria`) USING BTREE,
+	INDEX `IdCategoria` (`IdCategoria`) USING BTREE
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
+";
+INSERT INTO productos (DESCRIPCION,PRECIO,CATEGORIAID)
+VALUES ( 'TABLET SAMSUNG 10 PULGADAS',15850,2);
+
+INSERT INTO productos (DESCRIPCION,PRECIO,CATEGORIAID)
+VALUES ( 'NOTEBOOK DELL I5',75850,1);
+INSERT INTO productos (DESCRIPCION,PRECIO,CATEGORIAID)
+VALUES ( 'CESULAR S10',175850,3);
+INSERT INTO productos (DESCRIPCION,PRECIO,CATEGORIAID)
+VALUES ( 'RELOJ CASIO A CUERDA',5850,4);
+
+
+
+*/
+$sql="SHOW DATABASES";
+if (($result = $conn->query($sql)) !== FALSE)
+{
+    echo "query success";
+
+    while($row = $result->fetch_assoc())
+    {
+        print_r($row);
+    }
 }
+else
+{
+    echo "query failure";
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+/*if ($conn->query($sql) === TRUE) {
+  echo "Registros insertasdoS";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+$sql="CREATE TABLE `productos` (
+	`Idproducto` INT(11) NOT NULL AUTO_INCREMENT,
+	`Descripcion` CHAR(150) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Precio` FLOAT(12) NOT NULL DEFAULT '0',
+	`CategoriaID` INT(11) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`Idproducto`) USING BTREE,
+	INDEX `FK1ProductosCategorias` (`CategoriaID`) USING BTREE,
+	CONSTRAINT `FK1ProductosCategorias` FOREIGN KEY (`CategoriaID`) REFERENCES `categorias` (`IdCategoria`) ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+COLLATE='utf8mb4_general_ci'";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Table created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+*/
+/*
+$sql = "CREATE TABLE `productos` (
+	`Idproducto` INT(11) NOT NULL,
+	`Descripcion` CHAR(150) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`Precio` FLOAT(12) NOT NULL DEFAULT '0',
+	`CategoriaID` INT(11) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`Idproducto`) USING BTREE,
+	INDEX `FK1ProductosCategorias` (`CategoriaID`) USING BTREE,
+	CONSTRAINT `FK1ProductosCategorias` FOREIGN KEY (`CategoriaID`)
+   REFERENCES `categorias` (`IdCategoria`)
+    ON UPDATE RESTRICT ON DELETE RESTRICT
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;";*/
+/*
+if ($conn->query($sql) === TRUE) {
+  echo "Table created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}*/
+
 /*
 // sql to create table
 $sql = "CREATE TABLE `usuarios` (

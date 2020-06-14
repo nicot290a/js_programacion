@@ -1,0 +1,78 @@
+<html>
+    
+  <head>
+    <title>Anexsoft</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+
+function showCat(str) {
+
+let dropdown = $('#locality-dropdown');
+dropdown.empty();
+dropdown.append('<option value ="0" selected="true">Todos</option>');
+dropdown.prop('selectedIndex', 0);
+const url = "PHP/Listar_Categorias.php?q="+str;
+// Populate dropdown with list of provinces
+$.getJSON(url, function (data) {
+  $.each(data, function (key, entry) {
+    dropdown.append($('<option></option>').attr('value', entry.Idcategoria).text(entry.Descripcion));
+  })
+});
+
+var a= showProducts(0);
+} 
+
+/*test*/
+function showProducts(str) {
+
+var dato = document.getElementById('locality-dropdown');
+const url = "PHP/Listar_Productos.php?q="+dato.selectedIndex;
+
+
+    
+
+//alert (dato.selectedIndex);
+
+
+// Populate dropdown with list of provinces
+$.getJSON(url, function(data) {
+        var html = '';
+        html += '<div class="contenedor-fila">';
+        $.each(data, function(key, value){
+            html += '<div class="contenedor-columna">';
+            html += '    <div class="tablath" align="center">';
+            html += '<img src="https://i.ytimg.com/vi/_LbbKKuimaM/maxresdefault.jpg" width=100 height=100/>';
+            //html += '<label for="'+value.IdProducto+'">'+value.Descripcion+':</label>';
+            html += '<p>'+value.Idproducto+'-'+value.Descripcion+' <br> $'+value.Precio+'</p>';
+            html += '<button class="btn-cart">Comprar</button>';
+            html += '</div></div>';
+        });
+        html += '</div>';
+    $('#ct').html(html);
+    });
+} 
+
+</script>
+
+</head>
+<body onload="showCat('0')" >
+
+
+
+<div class="form-group">
+    <label>Categoria</label>
+    <select id="locality-dropdown" name="locality" class="form-control"
+    onchange="showProducts(this.value)"
+    >
+        <option value="0" id="loading" selected>TODOS</option>
+        
+    </select>
+    <h1> bienvenido a nuestro e-shop</h1>
+</div> 
+<div class="contenedor-tabla"></div>
+
+<ul id="ct"></ul>
+
+
+</html>

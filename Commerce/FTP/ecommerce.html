@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+<!--    <link rel="stylesheet" href="css/style.css" /> -->
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>Productos</title>
+  </head>
+
+  <body onload="showCat('0')" >
+    <h1 align="center">Bienvenidos a Paradigmas</h1>
+<div>	
+<table>
+<tr>
+	<th><div id="productos" align="left">
+
+    <select id="categorias" name="categorias" class="form-control">
+        <option value="0" id="loading" selected>TODOS</option>
+    </select>
+		<br/>
+		<div id="lista-productos"></div>
+	</div>		</th>
+			
+			
+	<th><div id="carrito" align="right">	
+	Carrito de compras
+		<div id="lista-carrito"></div>
+	</div></th>
+</tr>	
+</table>
+		
+</div>
+  <div class="container" align="center">
+
+      <label for="">Usuario:</label>
+      <input type="text" name="usuario" id="usuario" size="20" />
+      <br /><br />
+      <label for="">Contraseña:</label>
+
+      <input type="password" name="clave" id="clave" size="12" />
+      <br /><br />
+      <button id="finalizar-compra" name="finalizar-compra" class="btn-bootstrap">FINALIZAR COMPRA</button>
+    <br />
+
+
+
+  </div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src= "js/script.js"></script>
+<script>
+
+
+
+
+</script>
+  </body>
+</html>
